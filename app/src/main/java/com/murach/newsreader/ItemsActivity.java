@@ -2,7 +2,6 @@ package com.murach.newsreader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
