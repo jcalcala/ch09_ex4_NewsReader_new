@@ -13,12 +13,14 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 public class ItemsActivity extends Activity 
 implements OnItemClickListener {
 
     private RSSFeed feed;
     private FileIO io;
+    private int downloadCounter = 0;
     
     private TextView titleTextView;
     private ListView itemsListView;
@@ -41,6 +43,7 @@ implements OnItemClickListener {
     class DownloadFeed extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
+            downloadCounter = downloadCounter +1;
             io.downloadFile();
             return null;
         }
@@ -100,6 +103,7 @@ implements OnItemClickListener {
         SimpleAdapter adapter = 
             new SimpleAdapter(this, data, resource, from, to);
         itemsListView.setAdapter(adapter);
+        Toast.makeText(getApplicationContext(), "Test Download: "+downloadCounter,Toast.LENGTH_LONG).show();
         
         Log.d("News reader", "Feed displayed");
     }
